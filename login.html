@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css">
+    <title>Profile</title>
+</head>
+<body>
+<div class="card">
+    <h2>Login Form</h2>
+    <div class="login_register">
+        <a href="login.html" class="login" target="_self">Login</a>
+        <a href="signup.html" target="_self">Signup</a>
+    </div>
+    <form class="form" id="loginForm">
+        <input type="email" placeholder="Email Address" class="email" id="email">
+        <input type="password" placeholder="Password" class="pass" id="password">
+    </form>
+    <a href="#" class="fp">Forgot password?</a>
+    <button type="button" class="login_btn" onclick="login()">Login</button>
+    <div class="footer_card">
+        <p>Not a member?</p>
+        <a href="signup.html">Signup now</a>
+    </div>
+</div>
+<script>
+    function login() {
+        var validEmail = "example@example.com";
+        var validPassword = "password123";
+
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+
+        if (email && password) {
+            if (email === validEmail && password === validPassword) {
+                window.location.href = "index.html";
+                alert("Successfully logged in");
+            } else {
+                alert("Incorrect email or password");
+            }
+        } else {
+            alert("Please provide both email and password");
+        }
+    }
+</script>
+
+</body>
+</html>

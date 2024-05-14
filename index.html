@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="index.css">
+    <title>About Bus Tracking</title>
+    <style>
+        /* Inline CSS styles */
+        body {
+            position: relative;
+        }
+
+        .bars-menu i {
+            font-size: 1.5em;
+        }
+
+        .about-container {
+            max-width: 800px;
+            padding: 20px;
+            text-align: center;
+            color: rgb(255, 255, 255); /* Set text color to white */
+        }
+
+        .about-container h2 {
+            margin-bottom: 100px;
+            margin-right: 20px;
+            color: #111;
+        }
+
+        .about-container p {
+            font-size: 18px;
+            color: #111; /* Increased font size */
+            line-height: 1.6;
+            margin-right: 0px;
+            margin-left: 20px;
+            margin-top: -60px;
+        }
+
+        .about-section {
+            display: flex;
+            margin-left: 100px;
+            justify-content: flex-end;
+            align-items: center;
+            height: 90vh;
+        }
+
+        /* Added styles for background image container */
+        .bg-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-image: url('bus.jpg');
+            background-size: contain;
+            transition: background-image 0.5s ease-in-out;
+            z-index: -1;
+        }
+
+        .container2 {
+            background-image: url(bg2.jpg);
+            color: #111;
+            width: 100%;
+            height: 100vh;
+            margin-top: -100px;
+        }
+
+        .button-85 {
+            padding: 0.6em 2em;
+            left: 1030px;
+            bottom: 220px;
+            margin-bottom: 50px;
+            color: #0015ff;
+            background: #111;
+            font-size: 15px;
+            cursor: pointer;
+            position: relative;
+            font-weight: 650;
+            font-family: Georgia, 'Times New Roman';
+            font width: 200px;
+            height: 48px;
+            border-radius: 10px;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+
+        .button-85:before {
+            content: "";
+            background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            background-size: 400%;
+            z-index: -1;
+            filter: blur(5px);
+            -webkit-filter: blur(5px);
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            animation: glowing-button-85 20s linear infinite;
+            transition: opacity 0.3s ease-in-out;
+            border-radius: 10px;
+        }
+
+        @keyframes glowing-button-85 {
+            0% {
+                background-position: 0 0;
+            }
+
+            50% {
+                background-position: 400% 0;
+            }
+
+            100% {
+                background-position: 0 0;
+            }
+        }
+
+        .button-85:after {
+            z-index: -1;
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #222;
+            left: 0;
+            top: 0;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html">Smart Bus Tracking</a>
+            </div>
+            <input type="checkbox" id="click">
+            <label for="click" class="menu-icon">
+                <div class="bars-menu" id="barsMenu">
+                    <i class="bi bi-list"></i>
+                </div>
+            </label>
+            <ul>
+                <li><a id="homePage" href="#" class="active">Home</a></li>
+                <li><a id="busLocationPage" href="buslocation.html">Bus Location</a></li>
+                <li><a id="routeMapPage" href="routemap.html">RouteMap</a></li>
+                <li><a id="alertPage" href="contact.html">Contact</a></li>
+            </ul>
+            <div class="menu-icons">
+                <label for="toggle" class="icon">
+                    <div class="bars-menu" id="barsMenu">
+                        <i class="bi bi-list"></i>
+                    </div>
+                </label>
+                <div class="menu-content" id="menuContent">
+                    <a href="login.html" id="loginButton" target="_self">Login</a>
+                    <a href="#" id="contactButton">Contact Us</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Background image container -->
+    <div class="bg-container">
+        <div class="bg-image"></div>
+        <section class="about-section">
+            <div class="about-container">
+                <h2>About Bus Tracking</h2>
+                <p>
+                    Bus tracking is a technology that allows real-time monitoring and tracking of buses in a transportation system.
+                    It utilizes GPS (Global Positioning System) technology to track the exact location of buses on a map in real-time.
+                    Bus tracking systems provide passengers with valuable information such as bus locations, estimated arrival times, and any delays or disruptions,
+                    enhancing the overall passenger experience and making public transportation more efficient and reliable.
+                    These systems also benefit bus operators by optimizing bus routes, improving fleet management, and enhancing safety and security through real-time monitoring.
+                </p>
+            </div>
+        </section>
+    </div>
+    <button class="button-85" role="button">EXPLORE</button>
+    <!-- White-colored container -->
+    <div class="container2">
+        
+    </div>
+
+    <!-- JavaScript for toggling menu -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuIcon = document.querySelector('.menu-icon');
+            const menuContent = document.querySelector('.menu-content');
+
+            menuIcon.addEventListener('click', function () {
+                menuContent.classList.toggle('show-menu');
+            });
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+            const exploreButton = document.querySelector('.button-85');
+            const container2 = document.querySelector('.container2');
+
+            exploreButton.addEventListener('click', function () {
+                container2.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            });
+
+            // Get the current page URL
+            var currentPageUrl = window.location.href;
+
+            // Function to highlight the active page in the navigation bar
+            function highlightActivePage() {
+                var links = document.querySelectorAll('nav ul li a');
+
+                // Loop through each navigation link
+                links.forEach(function(link) {
+                    // Remove the 'active' class from all links
+                    link.classList.remove('active');
+
+                    // Check if the link href matches the current page URL
+                    if (link.href === currentPageUrl) {
+                        // Add the 'active' class to the link
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            // Call the function to highlight the active page
+            highlightActivePage();
+        });
+    </script>
+    <!-- End of JavaScript for scrolling to container2 -->
+</body>
+</html>

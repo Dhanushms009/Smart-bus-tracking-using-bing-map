@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="signup.css">
+    <title>Profile</title>
+</head>
+<body>
+
+<div class="card">
+    <h2>Signup Form</h2>
+
+    <div class="login_register">
+        <a href="login.html" class="login" target="_self">Login</a>
+        <a href="signup.html" class="register" target="_self">Signup</a>
+    </div>
+
+    <form class="form" id="signupForm">
+        <input type="email" placeholder="Email Address" class="email">
+        <input type="password" placeholder="Password" class="pass">
+        <input type="password" placeholder="Confirm Password" class="confirm_pass">
+        <button type="submit" class="login_btn">Signup</button>
+    </form>
+    <div class="footer_card">
+    <a href="#" class="fp">Already a member?</a>
+    <a href="login.html">Login now</a>
+</div>
+</div>
+<script>
+    document.getElementById("signupForm").addEventListener("submit", function(event) {
+        event.preventDefault(); 
+
+        var email = document.querySelector(".email").value;
+        var password = document.querySelector(".pass").value;
+        var confirmPassword = document.querySelector(".confirm_pass").value;
+
+        if (email && password && confirmPassword && password === confirmPassword) {
+            window.location.href = "index.html";
+            alert("Signed up successfully");
+        } else {
+            alert("Please provide all details and make sure the passwords match");
+        }
+    });
+</script>
+
+</body>
+</html>

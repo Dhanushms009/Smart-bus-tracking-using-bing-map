@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Route Selection</title>
+    <link rel="stylesheet" href="routemap.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        body {
+            background-image:url(bg2.jpg) ;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            max-width: 80%;
+            margin: auto;
+            padding: 1.4rem 1rem;
+            background-color: #000000;
+            backdrop-filter: blur(10px);
+            border-radius: 3rem;
+            margin-top: 1rem;
+        }
+
+        #map-container {
+            height: 400px;
+            width: 90%;
+            margin-right: 70px;
+            border: #000000 4px solid;
+            border-radius: 20px;
+            margin-left: 70px;
+            margin-right: 100px;
+            background: linear-gradient(to bottom, skyblue, white, royalblue);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #busRouteList {
+            margin-top: 20px;
+            padding-left: 20px;
+        }
+
+        #busRouteList li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body onload="initializeMap()">
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html">Smart Bus Tracking</a>
+            </div>
+            <ul>
+                <li><a id="homePage" href="index.html">Home</a></li>
+                <li><a id="busLocationPage" href="buslocation.html">Bus Location</a></li>
+                <li><a id="routeMapPage" href="routemap.html" class="active">RouteMap</a></li>
+                <li><a id="alertPage" href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <h1>Select a Bus</h1>
+    <select id="routeSelect" onchange="calculateRoute()">
+        <option value="">Select Route</option>
+        <option value="erode-coimbatore">LNT TRAVELS</option>
+        <option value="salem-erode">non-stop 100</option>
+        <option value="erode-perundurai">Bus No:12b</option>
+        <option value="tirupur-perundurai">Sakthi Travels</option>
+    </select>
+
+    <br><br>
+
+    <div id="map-container">
+        <div id="map"></div>
+    </div>
+
+    <!-- Ordered list for displaying bus route -->
+    <h2>Bus Route</h2>
+    <ul id="busRouteList"></ul>
+
+    <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=AnE6yffdTmV-V0s9-9sC5xQ0pi9rALijcIdDmrmlkbqYEMiSHxoP_FapnaXPmtQp'></script>
+    <script>
+        var map;
+        var directionsManager = null;
+
+        function initializeMap() {
+            map = new Microsoft.Maps.Map(document.getElementById('map'), {
+                credentials: 'AnE6yffdTmV-V0s9-9sC5xQ0pi9rALijcIdDmrmlkbqYEMiSHxoP_FapnaXPmtQp',
+                center: new Microsoft.Maps.Location(11.1271, 78.6569),
+                zoom: 8
+            });
+        }
+
+        function calculateRoute() {
+            // Clear existing map route
+            if (directionsManager) {
+                directionsManager.clearAll();
+            }
+
+            var route = document.getElementById("routeSelect").value;
+            var routeList, start, end, waypoints;
+
+            if (route === "erode-coimbatore") {
+                routeList = ['Coimbatore', 'Avinashi', 'Perumanallur', 'Perundurai', 'Erode'];
+                start = new Microsoft.Maps.Location(11.342753, 77.728884);
+                end = new Microsoft.Maps.Location(11.016844, 76.955832);
+                waypoints = [
+                    { location: new Microsoft.Maps.Location(11.2728, 77.5966) }, // Perundurai
+                    { location: new Microsoft.Maps.Location(11.1952, 77.3074) }  // Avinashi
+                ];
+            } else if (route === "salem-erode") {
+                routeList = ['salem','erode'];
+                start = new Microsoft.Maps.Location(11.664325, 78.146011);
+                end = new Microsoft.Maps.Location(11.342753, 77.728884);
+                waypoints = [
+                    { location: new Microsoft.Maps.Location(11.2254, 77.8780) }, // Sankari
+                    { location: new Microsoft.Maps.Location(11.3436, 77.7680) }  // Veerapandi
+                ];
+            } else if (route === "erode-perundurai") {
+                routeList = ['Erode', 'Thindal', 'Mettukadai', 'Vaikalmedu', 'Perundurai'];
+                start = new Microsoft.Maps.Location(11.342753, 77.728884); // Erode
+                end = new Microsoft.Maps.Location(11.2728, 77.5966); // Perundurai
+                waypoints = [
+                    { location: new Microsoft.Maps.Location(11.298550, 77.649159) }, // Waypoint 1
+                    { location: new Microsoft.Maps.Location(11.320555, 77.676904) }  // Waypoint 2
+                ];
+            } else if (route === "tirupur-perundurai") {
+                routeList = ['Tirupur', 'Perumanallur', 'Vijayamangalam', 'Perundurai'];
+                start = new Microsoft.Maps.Location(11.1075, 77.3398); // Tirupur
+                end = new Microsoft.Maps.Location(11.2728, 77.5966); // Perundurai
+                waypoints = [
+                    { location: new Microsoft.Maps.Location(11.207351, 77.359180) }, // Waypoint 1
+                    { location: new Microsoft.Maps.Location(11.242389, 77.504699) }  // Waypoint 2
+                ];
+            }
+
+            if (routeList && start && end) {
+                var busRouteList = document.getElementById("busRouteList");
+                busRouteList.innerHTML = '';
+
+                routeList.forEach(function(location, index) {
+                    var listItem = document.createElement('li');
+                    listItem.textContent = (index + 1) + ') ' + location;
+                    busRouteList.appendChild(listItem);
+                });
+
+                // Calculate and display route using polylines
+                Microsoft.Maps.loadModule('Microsoft.Maps.Directions', function () {
+                    directionsManager = new Microsoft.Maps.Directions.DirectionsManager(map);
+
+                    directionsManager.setRequestOptions({ routeMode: Microsoft.Maps.Directions.RouteMode.driving });
+
+                    directionsManager.addWaypoint(new Microsoft.Maps.Directions.Waypoint({ location: start }));
+
+                    if (waypoints) {
+                        waypoints.forEach(function(waypoint) {
+                            directionsManager.addWaypoint(new Microsoft.Maps.Directions.Waypoint(waypoint));
+                        });
+                    }
+
+                    directionsManager.addWaypoint(new Microsoft.Maps.Directions.Waypoint({ location: end }));
+
+                    directionsManager.setRenderOptions({
+                        itineraryContainer: null,
+                        polylineOptions: {
+                            strokeColor: 'blue',
+                            strokeThickness: 3
+                        }
+                    });
+
+                    directionsManager.calculateDirections();
+                });
+            }
+        }
+    </script>
+</body>
+</html>

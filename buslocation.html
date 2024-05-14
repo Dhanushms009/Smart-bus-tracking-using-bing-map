@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Page</title>
+    <link rel="stylesheet" href="buslocation.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html">Smart Bus Tracking</a>
+            </div>
+            <ul>
+                <li><a id="homePage" href="index.html">Home</a></li>
+                <li><a id="busLocationPage" href="buslocation.html" class="active">Bus Location</a></li>
+                <li><a id="routeMapPage" href="routemap.html">RouteMap</a></li>
+                <li><a id="alertPage" href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h1>Live Bus Location</h1>
+    <!-- Dropdown bar for selecting buses -->
+    <div class="dropdown-container">
+        <select id="busDropdown">
+            <option value="" selected disabled>Select a bus</option>
+            <option value="bus1">Bus 1</option>
+            <option value="bus2">Bus 2</option>
+            <option value="bus3">Bus 3</option>
+            <option value="bus4">Bus 4</option>
+        </select>
+    </div>
+    
+    <div id="mapContainer" style=" margin-left:20px;border: #000000 4px solid;margin-right: 20px;max-width: 95%; border-radius: 20px; height: 400px; position: relative;
+    overflow:hidden;"></div>
+    <p     
+    >Welcome to Smart Bus Tracker, your go-to destination for real-time bus tracking and route information. Our interactive map interface provides live updates on bus locations, ensuring you never miss your ride. Easily search for specific routes or stops and stay informed about any schedule changes or delays. Create a personalized account to save your favorite routes and receive notifications for your preferred buses. </p>
+
+    <script src="https://www.bing.com/api/maps/mapcontrol?key=AnE6yffdTmV-V0s9-9sC5xQ0pi9rALijcIdDmrmlkbqYEMiSHxoP_FapnaXPmtQp" async defer></script>
+    <script src="buslocation.js"></script>
+</body>
+</html>

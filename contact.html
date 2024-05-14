@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="contact.css">
+    <title>Contact Us - Smart Bus Tracking</title>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="#">Smart Bus Tracking</a>
+            </div>
+            <input type="checkbox" id="click">
+            <label for="click" class="menu-icon">
+                <div class="bars-menu" id="barsMenu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </label>
+            <ul>
+                <li><a id="homePage" href="index.html">Home</a></li>
+                <li><a id="busLocationPage" href="buslocation.html">Bus Location</a></li>
+                <li><a id="routeMapPage" href="routemap.html">RouteMap</a></li>
+                <li><a id="alertPage" href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Contact Form Content -->
+    <div class="container">
+        <div class="contact-form">
+            <h2>Contact Us</h2>
+            <div class="contact-form">
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <label for="name">Your Name:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message:</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Send Message">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="contact-details">
+            <h3>Contact Details</h3>
+            <p><i class="fas fa-user"></i> John</p>
+            <p><i class="fas fa-envelope"></i> john@example.com</p>
+            <p><i class="fas fa-phone"></i> +1234567890</p>
+            <p><i class="fas fa-map-marker-alt"></i> 123 Main Street, City, Country</p>
+        </div>
+    </div>
+</body>
+</html>
